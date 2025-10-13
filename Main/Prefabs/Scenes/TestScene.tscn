@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://d3nw825r7mgal"]
+
+[ext_resource type="Script" uid="uid://dmifcjnpf02iw" path="res://Main/Framework/MainLauncher.cs" id="1_kooqj"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kooqj"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_x5x4i"]
+sky_material = SubResource("ProceduralSkyMaterial_kooqj")
+
+[sub_resource type="Environment" id="Environment_77y8d"]
+background_mode = 2
+sky = SubResource("Sky_x5x4i")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_kooqj"]
+size = Vector3(30, 1, 30)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kooqj"]
+size = Vector3(30, 1, 30)
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_kooqj")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_77y8d")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 16.1257, 0)
+shadow_enabled = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_kooqj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_kooqj")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.694947, 0.719061, 0, -0.719061, 0.694947, 0, 15.5505, 21.5539)
+current = true
+
+[node name="ArenaSpawn" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.381856, 0)
