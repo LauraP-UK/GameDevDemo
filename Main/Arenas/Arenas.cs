@@ -7,6 +7,8 @@ public static class Arenas {
     public static readonly Arena ICE_ARENA = new IceArena();
     public static readonly Arena FOREST_ARENA = new ForestArena();
     
+    private static readonly Random _rand = new();
+    
     public static readonly List<Arena> ALL_ARENAS = [
         FIRE_ARENA,
         ICE_ARENA,
@@ -20,9 +22,13 @@ public static class Arenas {
         return null;
     }
     
+    public static Arena GetNextArena(Arena currentArena) {
+        int index = ALL_ARENAS.IndexOf(currentArena);
+        return index == -1 ? ALL_ARENAS[0] : ALL_ARENAS[(index + 1) % ALL_ARENAS.Count];
+    }
+    
     public static Arena GetRandomArena() {
-        Random rand = new();
-        int index = rand.Next(ALL_ARENAS.Count);
+        int index = _rand.Next(ALL_ARENAS.Count);
         return ALL_ARENAS[index];
     }
 }

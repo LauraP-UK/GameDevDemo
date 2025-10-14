@@ -24,9 +24,9 @@ public partial class MainLauncher : Node {
         GameManager.Process(delta);
         
         _elapsedTime += delta;
-        if (_elapsedTime >= 2.0) {
+        if (_elapsedTime >= 0.5) {
             _elapsedTime = 0;
-            ArenaManager.LoadRandomArena();
+            ArenaManager.LoadArena(Arenas.GetNextArena(ArenaManager.GetCurrentArena()));
         }
     }
 
