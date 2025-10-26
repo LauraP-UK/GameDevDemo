@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d4lr6faih2rto"]
+[gd_scene load_steps=12 format=3 uid="uid://d4lr6faih2rto"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6rm7k"]
 albedo_color = Color(1, 0.503, 0.29, 1)
@@ -35,6 +35,17 @@ height = 4.0
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_egsls"]
 height = 4.0
 radius = 3.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_npma0"]
+albedo_color = Color(1, 0.454, 0.09, 1)
+emission_enabled = true
+emission = Color(1, 0.67, 0.1, 1)
+emission_energy_multiplier = 1.88
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rumpv"]
+material = SubResource("StandardMaterial3D_npma0")
+top_radius = 1.0
+height = 4.01
 
 [node name="Node3D" type="Node3D"]
 
@@ -91,3 +102,6 @@ mesh = SubResource("CylinderMesh_kce0f")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Volcano"]
 shape = SubResource("CylinderShape3D_egsls")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Volcano"]
+mesh = SubResource("CylinderMesh_rumpv")
